@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
+@Getter //  Getter를 대신 생성해줍니다.
 @NoArgsConstructor // 기본생성자를 대신 생성해줍니다.
 @Entity // 데이터베이스 기준으로 테이블임을 나타냅니다.
 public class Course extends Timestamped {
@@ -21,18 +21,19 @@ public class Course extends Timestamped {
     private String tutor;
 
 
-    /*Getter 생성*/
-//    public Long getId() {
-//        return this.id;
-//    }
-//
-//    public String getTitle() {
-//        return this.title;
-//    }
-//
-//    public String getTutor() {
-//        return this.tutor;
-//    }
+    /*Getter 생성*//*
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getTutor() {
+        return this.tutor;
+    }
+*//* @Getter 롬복 어노테이션을 이용해서 코드 작성을 대신해줌 */
 
 
     public Course(String title, String tutor) {
@@ -41,7 +42,7 @@ public class Course extends Timestamped {
     }
 
     //  Course update
-    public void update(CourseRequstDTO requstDTO) {
+    public void update(CourseRequstDto requstDTO) {
         this.title = requstDTO.getTitle();
         this.tutor = requstDTO.getTutor();
     }
