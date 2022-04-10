@@ -35,6 +35,10 @@ public class Course extends Timestamped {
     }
 *//* @Getter 롬복 어노테이션을 이용해서 코드 작성을 대신해줌 */
 
+    public Course(CourseRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.tutor = requestDto.getTutor();
+    }
 
     public Course(String title, String tutor) {
         this.title = title;
