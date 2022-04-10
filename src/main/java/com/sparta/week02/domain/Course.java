@@ -42,7 +42,7 @@ public class Course extends Timestamped {
     }
 
     //  Course update
-    public void update(CourseRequstDto requstDTO) {
+    public void update(CourseRequestDto requstDTO) {
         this.title = requstDTO.getTitle();
         this.tutor = requstDTO.getTutor();
     }

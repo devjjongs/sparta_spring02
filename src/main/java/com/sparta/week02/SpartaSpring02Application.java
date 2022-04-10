@@ -2,7 +2,7 @@ package com.sparta.week02;
 
 import com.sparta.week02.domain.Course;
 import com.sparta.week02.domain.CourseRepository;
-import com.sparta.week02.domain.CourseRequstDto;
+import com.sparta.week02.domain.CourseRequestDto;
 import com.sparta.week02.service.CourseService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -72,7 +72,7 @@ public class SpartaSpring02Application {
                 System.out.println(course.getTutor());
             }   //  저장된 데이터 출력
 
-            Course new_course = new Course("웹개발의 봄, Spring", "임민영");
+            CourseRequestDto requestDto = new CourseRequestDto("웹개발의 봄, Spring", "임민영");
             courseService.update(1L, new_course);
             courseList = courseRepository.findAll();
             for (int i=0; i<courseList.size(); i++) {
@@ -83,6 +83,35 @@ public class SpartaSpring02Application {
             }   //  기존 저장된 데이터의 코스명 수정
         };
     }*/     //  데이터 저장 및 수정
+
+    /*@Bean
+    public CommandLineRunner demo(CourseRepository courseRepository, CourseService courseService) {
+        return (args) -> {
+            courseRepository.save(new Course("프론트엔드의 꽃, 리액트", "임민영"));
+
+            System.out.println("데이터 인쇄");
+            List<Course> courseList = courseRepository.findAll();
+            for (int i = 0; i < courseList.size(); i++) {
+                Course course = courseList.get(i);
+                System.out.println(course.getId());
+                System.out.println(course.getTitle());
+                System.out.println(course.getTutor());
+            }
+
+            CourseRequestDto requestDto = new CourseRequestDto("웹개발의 봄, Spring", "임민영");
+            courseService.update(1L, requestDto);
+            courseList = courseRepository.findAll();
+
+            for (int i = 0; i < courseList.size(); i++) {
+                Course course = courseList.get(i);
+                System.out.println(course.getId());
+                System.out.println(course.getTitle());
+                System.out.println(course.getTutor());
+            }
+
+            courseRepository.deleteAll();   //  전체 삭제
+        };
+    }*/     //  데이터 출력 및 삭제
 
     @Bean
     public CommandLineRunner demo(CourseRepository courseRepository, CourseService courseService) {
@@ -98,18 +127,15 @@ public class SpartaSpring02Application {
                 System.out.println(course.getTutor());
             }
 
-            CourseRequstDto requstDto = new CourseRequstDto("웹개발의 봄, Spring", "임민영");
-            courseService.update(1L, requstDto);
+            CourseRequestDto requestDto = new CourseRequestDto("웹개발의 봄, Spring", "임민영");
+            courseService.update(1L, requestDto);
             courseList = courseRepository.findAll();
-
             for (int i = 0; i < courseList.size(); i++) {
                 Course course = courseList.get(i);
                 System.out.println(course.getId());
                 System.out.println(course.getTitle());
                 System.out.println(course.getTutor());
             }
-
-            courseRepository.deleteAll();   //  전체 삭제
         };
-    }     //  데이터 출력 및 삭제
+    }
 }
