@@ -17,8 +17,9 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    /*데이터 등록 API*/
     // PostMapping을 통해서, 같은 주소라도 방식이 다름을 구분합니다.
-    @PostMapping("/api/courses")    //  생성이기 때문에 Post방식
+    @PostMapping("/api/courses")
     public Course createCourse(@RequestBody CourseRequestDto requestDto) {
         // requestDto 는, 생성 요청을 의미합니다.
         // 강의 정보를 만들기 위해서는 강의 제목과 튜터 이름이 필요하잖아요?
@@ -35,12 +36,12 @@ public class CourseController {
     }
 
     /*데이터 조회 API*/
-    @GetMapping("/api/courses")     //  조회이기 때문에 Get방식
-    public List<Course> getCourses() {      //  List 형식으로 조회
+    @GetMapping("/api/courses")
+    public List<Course> getCourses() {
         return courseRepository.findAll();
     }
 
-
+    /*데이터 수정 API*/
     @PutMapping("/api/courses/{id}")    //  /api/courses/에 변수 {id}로 값이 들어올 경우 updateCourse 메소드 실행
     public Long updateCourse(@PathVariable Long id, @RequestBody CourseRequestDto requestDto) {
         // @PathVariable : 자동으로 생성시켜 주기 위해 사용
